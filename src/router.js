@@ -14,7 +14,12 @@ export default new Router({
             component: Home
         },
         {
-            path: '/players/{takim_id}',
+            path: '/players/:takim_id',
+            name: 'PlayersByTeam',
+            component: () => import(/* webpackChunkName: "about" */ './views/Players.vue')
+        },
+        {
+            path: '/players',
             name: 'Players',
             component: () => import(/* webpackChunkName: "about" */ './views/Players.vue')
         },

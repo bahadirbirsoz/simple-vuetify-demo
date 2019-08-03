@@ -7,6 +7,7 @@
                 fixed
                 clipped
                 app
+                :color="$store.getters.color"
         >
             <v-list dense>
                 <router-link to="/players">

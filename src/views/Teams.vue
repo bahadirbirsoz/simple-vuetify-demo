@@ -1,9 +1,9 @@
 <template>
     <div>
-        <h1>{{title}}</h1>
 
-        <simple-title :label="title"></simple-title>
+        <baslik></baslik>
         <v-flex>
+
 
             <v-spacer></v-spacer>
             <v-btn color="light-green lighten-3" @click="openAddDialog">Yeni Takım
@@ -26,6 +26,9 @@
                 <td>
                     <v-btn @click="openEditDailog(props.item)">Düzenle</v-btn>
                     <v-btn color="red" dark @click="openDeleteDailog(props.item)">Sil</v-btn>
+                    <router-link :to="`/players/${props.item.id}`">
+                        <v-btn color="red" dark>Players</v-btn>
+                    </router-link>
                 </td>
 
             </template>
@@ -101,11 +104,11 @@
 </template>
 
 <script>
-    import SimpleTitle from './../components/SimpleTitle';
+    import baslik from '../components/baslik';
 
     export default {
         name: "Teams",
-        components: {SimpleTitle},
+        components: {baslik},
         data() {
             return {
                 editingItem: {
@@ -153,7 +156,9 @@
             this.initialize();
         },
         methods: {
-
+            playerListUrl(item) {
+                return '/players/' + item.id;
+            },
             initialize() {
                 var that = this;
                 this.$axios.get('http://kendinal.lcl/teams').then((response) => {
